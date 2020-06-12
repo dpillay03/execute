@@ -1,42 +1,44 @@
 import React from 'react';
 
 class AddItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      item: null
+      item: ' '
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleChange(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
-    console.log(event.target.value)
-    this.setState({ [event.target.name]: event.target.value})
+    const goal = this.state;
+    console.log(goal)
   }
 
-  handleSubmit(event) {
+  handleChange = (event) => {
     event.preventDefault()
+    this.setState({ 
+      [event.target.name]: event.target.value 
+    });
   }
-  render(){
-  const {item} = this.state
-  return (
+
+  render() {
+    const {item} = this.state
+    return (
       <div>
-        <input
-        type='text'
-        name='item'
-        placeholder='Input Goal'
-        value={item}
-        onChange={this.handleChange}
-      />
-        <button id='submitButton'
-                type='submit'
-                value='value'
-                >Add</button>
-        <p>{item}</p>
+        <form onSubmit={this.handleSubmit}>
+          <p>Goal is: {item}</p>
+          <input
+            type='text'
+            placeholder='Input Goal'
+            name='item'
+            value={item}
+            onChange={this.handleChange}
+          />
+          <p><button>Add</button></p> 
+        </form>
       </div>
-  );
+    );
   }
 }
 
