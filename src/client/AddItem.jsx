@@ -1,33 +1,50 @@
 import React from 'react';
+import AppendItem from './AppendItem.jsx';
 
-class AddItem extends React.Component {
+export default class AddItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      item: ' '
+      items:[],
+      listItems: {
+        text: ' ',
+        key: ' '
+      }
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    const goal = this.state;
-    console.log(goal)
+    const goal = this.state.listItems;
+    if(goal.text !== ' '){
+      const newGoals = [...this.state.items, goal];
+      this.setState({
+        items: newGoals,
+        listItems:{
+          text: ' ',
+          key: ' '
+        }
+      })
+      console.log('Goal: ', goal);
+    }
   }
 
   handleChange = (event) => {
     event.preventDefault()
-    this.setState({ 
-      [event.target.name]: event.target.value 
+    this.setState({
+      listItems:{
+        text: event.target.value,
+        key: Date.now()
+      }
     });
   }
 
   render() {
-    const {item} = this.state
+    const { item } = <li>{this.state.listItems.text}</li>
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <p>Goal is: {item}</p>
           <input
             type='text'
             placeholder='Input Goal'
@@ -35,11 +52,12 @@ class AddItem extends React.Component {
             value={item}
             onChange={this.handleChange}
           />
-          <p><button>Add</button></p> 
+          <p><button onClick={this.handleArray}>Add</button></p>
         </form>
+
+        <AppendItem items={this.state.items} ></AppendItem>
       </div>
     );
   }
 }
 
-export default AddItem;
