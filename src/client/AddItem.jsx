@@ -13,7 +13,9 @@ export default class AddItem extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
+
   handleSubmit = (event) => {
     event.preventDefault()
     const goal = this.state.listItems;
@@ -40,6 +42,15 @@ export default class AddItem extends React.Component {
     });
   }
 
+  deleteItem = (key) => {
+    const filteredItems= this.state.items.filter(item =>
+      item.key!==key);
+    this.setState({
+      items: filteredItems
+    })
+
+  }
+
   render() {
     const { item } = <li>{this.state.listItems.text}</li>
     return (
@@ -55,7 +66,8 @@ export default class AddItem extends React.Component {
           <p><button onClick={this.handleArray}>Add</button></p>
         </form>
 
-        <AppendItem items={this.state.items} ></AppendItem>
+        <AppendItem items={this.state.items}
+                    deleteItem={this.deleteItem}/>
       </div>
     );
   }
