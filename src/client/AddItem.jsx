@@ -5,7 +5,8 @@ export default class AddItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items:[],
+      items: [],
+      strikeThrough: [],
       listItems: {
         text: ' ',
         key: ' '
@@ -14,16 +15,18 @@ export default class AddItem extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.updateItem = this.updateItem.bind(this);
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+    document.getElementById("input-form").reset()
     const goal = this.state.listItems;
-    if(goal.text !== ' '){
+    if (goal.text !== ' ') {
       const newGoals = [...this.state.items, goal];
       this.setState({
         items: newGoals,
-        listItems:{
+        listItems: {
           text: ' ',
           key: ' '
         }
@@ -35,7 +38,7 @@ export default class AddItem extends React.Component {
   handleChange = (event) => {
     event.preventDefault()
     this.setState({
-      listItems:{
+      listItems: {
         text: event.target.value,
         key: Date.now()
       }
@@ -43,19 +46,34 @@ export default class AddItem extends React.Component {
   }
 
   deleteItem = (key) => {
-    const filteredItems= this.state.items.filter(item =>
-      item.key!==key);
+    const filteredItems = this.state.items.filter(item =>
+      item.key !== key);
     this.setState({
       items: filteredItems
     })
-
   }
+
+  updateItem = (text, key) => {
+    console.log("items:" + this.state.items);
+    const items = this.state.items;
+    items.map(item => {
+      if (item.key === key) {
+        console.log(item.key + "    " + key)
+        item.text = text;
+      }
+    })
+    this.setState({
+      items: items
+    })
+  };
+
+
 
   render() {
     const { item } = <li>{this.state.listItems.text}</li>
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form id="input-form" onSubmit={this.handleSubmit}>
           <input
             type='text'
             placeholder='Input Goal'
@@ -67,7 +85,9 @@ export default class AddItem extends React.Component {
         </form>
 
         <AppendItem items={this.state.items}
-                    deleteItem={this.deleteItem}/>
+          deleteItem={this.deleteItem}
+          updateItem={this.updateItem}
+          />
       </div>
     );
   }
