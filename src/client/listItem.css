@@ -1,0 +1,8 @@
+.list .updateField {
+    background-color: transparent;
+    border-color: transparent;
+    background: transparent;
+}
+.crossed-line {
+    text-decoration: line-through;
+}
