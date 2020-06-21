@@ -1,8 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Sen:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+
+html body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #051937, #171228, #190a1a, #12040d, #000000);
+}
+.App {
+    height: 600px;
+    width: 500px;
+    background: white;
+    margin: 0 auto;
+    border-radius: 25px;
+    margin-top: 10em;
+    overflow: auto;
+}
+
+h1 {
+    font-size: 60px;
+    font-family: 'Rubik Mono One', sans-serif;
+    text-align: center;
+    color: black;
+    margin-bottom: 0;
+}
+h2 {
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Sen', sans-serif;
+    color: black;
+}
+form {
+    text-align: center;
+}
+input {
+    font-size: 25px;
+    height: 40px;
+    width: 225px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#input::placeholder {
+    font-size: 25px;
+}
+#add{
+    font-size: 20px;
+    width: 100px;
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 20px;
+}
+.list {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgb(152, 152, 152);
+}
 .list .updateField {
     background-color: transparent;
     border-color: transparent;
     background: transparent;
 }
+.updateField {
+    font-size: 30px;
+    font-family: 'Bebas Neue', cursive;
+}
 .crossed-line {
     text-decoration: line-through;
+    width: 100px;
 }
+#check-mark {
+    color: black;
+}
+#check-mark:hover {
+    color: green;
+}
+#check-mark:active {
+    color: green;
+}
+
+@media only screen and (max-width: 600px) {
+    html body {
+        background: white;
+    }
+    .App {
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        margin-top: 0;
+    }
+  }
