@@ -11,3 +11,5 @@ Execute is a Productivity application built with React, CSS, and Delpoyed on GH 
 - React-Icons
 - GH-Pages
 
+#### Deployed App:
+https://dpillay03.github.io/execute/
