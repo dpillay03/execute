@@ -1,12 +1,12 @@
 import React from 'react';
 import AppendItem from './AppendItem.jsx';
+import './listItem.css';
 
 export default class AddItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      strikeThrough: [],
       listItems: {
         text: ' ',
         key: ' '
@@ -14,8 +14,9 @@ export default class AddItem extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
+    this.finishItem = this.finishItem.bind(this);
     this.updateItem = this.updateItem.bind(this);
+
   }
 
   handleSubmit = (event) => {
@@ -45,12 +46,15 @@ export default class AddItem extends React.Component {
     });
   }
 
-  deleteItem = (key) => {
+  finishItem = (key) => {
     const filteredItems = this.state.items.filter(item =>
       item.key !== key);
-    this.setState({
-      items: filteredItems
-    })
+    setTimeout(() => {
+      this.setState({
+        items: filteredItems
+      })
+    }, 500);
+
   }
 
   updateItem = (text, key) => {
@@ -67,8 +71,6 @@ export default class AddItem extends React.Component {
     })
   };
 
-
-
   render() {
     const { item } = <li>{this.state.listItems.text}</li>
     return (
@@ -78,16 +80,17 @@ export default class AddItem extends React.Component {
             type='text'
             placeholder='Input Goal'
             name='item'
+            id='input'
             value={item}
             onChange={this.handleChange}
           />
-          <p><button onClick={this.handleArray}>Add</button></p>
+          <button id='add' onClick={this.handleArray}>Add</button>
         </form>
 
         <AppendItem items={this.state.items}
-          deleteItem={this.deleteItem}
+          finishItem={this.finishItem}
           updateItem={this.updateItem}
-          />
+        />
       </div>
     );
   }

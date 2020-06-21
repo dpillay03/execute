@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoIosCheckmarkCircle, IoMdTrash } from "react-icons/io";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import './AddItem';
 import './listItem.css';
 
@@ -10,8 +10,8 @@ export default function AppendItem(props) {
 
             <input className="updateField" type="text" id={item.key} value={item.text} onChange={(e) => {
                 props.updateItem(e.target.value, item.key)}}></input>
-            <IoIosCheckmarkCircle />
-            <IoMdTrash onClick={() => { props.deleteItem(item.key) }} />
+                
+            <IoIosCheckmarkCircle size={40} id="check-mark" onClick={() => { props.finishItem(item.key) }}  />
         </div>
     })
     return (

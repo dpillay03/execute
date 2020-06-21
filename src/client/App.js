@@ -5,9 +5,9 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <h1>Execute</h1>
+          <h1>Execute</h1>
+          <h2>Track Your Goals</h2>
         <AddItem />
-
       </div>
     );  
   }
